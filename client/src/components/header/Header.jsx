@@ -53,7 +53,9 @@ const Header = ({ type }) => {
     dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
     navigate("/hotels", { state: { destination, dates, options } });
   };
-
+  const handelRegister=()=>{
+    navigate("/register");
+  }
   return (
     <div className="header">
       <div
@@ -92,7 +94,7 @@ const Header = ({ type }) => {
               Get rewarded for your travels – unlock instant savings of 10% or
               more with a free Lamabooking account
             </p>
-            {!user && <button className="headerBtn">Sign in / Register</button>}
+            {!user && <button onClick={()=>handelRegister()} className="headerBtn">Sign in / Register</button>}
             <div className="headerSearch">
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -103,14 +105,14 @@ const Header = ({ type }) => {
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
+
               <div className="headerSearchItem">
                 <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
                 >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
-                  dates[0].endDate,
-                  "MM/dd/yyyy"
+                  dates[0].endDate,"MM/dd/yyyy"
                 )}`}</span>
                 {openDate && (
                   <DateRange
