@@ -16,8 +16,9 @@ const UserSchema = new mongoose.Schema(
       required: true,
     },
     img: {
-      data: Buffer,
-      contentType: String
+      // data: Buffer,
+      type: String,
+      // required: true,
     },
     city: {
       type: String,

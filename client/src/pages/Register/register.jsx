@@ -30,21 +30,29 @@ const Register = () => {
     data.append("name", filename);
     data.append("img", e.target.files[0]);
     try {
+      // const pf=URL.createObjectURL(e.target.files[0]);
+      // console.log(pf);
       await axios.post("/auth/upload", data);
-      setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.files[0] }));
+      setCredentials((prev) => ({ ...prev, [e.target.id]: filename}));
     } catch (err) {
       console.log(err);
     }
   };
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log(credentials.img);
     try {
       const res = await axios.post("/auth/register", credentials);
+      // if(res.data._id){
+      //   try {
+      //     await axios.put("auth/register"+res.data._id,data)
+      //   } catch (error) {
+      // dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      //   }
+      // }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
-    !error && navigate("/login");
+    if(!error) navigate("/login");
   };
 
   return (

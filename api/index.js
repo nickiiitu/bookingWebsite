@@ -7,9 +7,14 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 dotenv.config();
-
+console.log(__dirname,"/routes/images");
+app.use("/routes/images",express.static(path.join(__dirname,"/routes/images")))//making images folder public to use images in frontend
 const connect = async () => {
   try {
     console.log("try");
